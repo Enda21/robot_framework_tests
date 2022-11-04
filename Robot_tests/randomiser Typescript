@@ -1,0 +1,19 @@
+ // 30% chance returning 'MORTGAGE_LINE' - 70% chance returning 'LOW_QUOTES'
+  const randomizeBroker = () => {
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    return randomNumber > 70
+      ? { partners: ['MORTGAGE_LINE'] }
+      : { partners: ['LOW_QUOTES'] };
+  };
+
+  //returns undefined if not signed in or no BuyingBudget
+  const checkUserHasBuyingBudget = async () => {
+    const response = await AccountsAPI.getBuyingBudgetResults(token);
+    return !response.data || !response.data.buyingBudgetId
+      ? undefined
+      : response.data;
+  };
+
+  const data = (await checkUserHasBuyingBudget())
+    ? await checkUserHasBuyingBudget()
+    : randomizeBroker();
