@@ -53,7 +53,7 @@ jobs:
       - name: Run Robot Framework Tests in Headless Mode
         run: |
           cd Robot_tests
-          robot -d results --variable BROWSER:headlesschrome .
+          robot --loglevel DEBUG .
 
       - name: Upload Test Reports
         if: always()

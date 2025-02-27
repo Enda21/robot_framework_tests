@@ -10,7 +10,7 @@ Library           Collections
 
 *** Variables ***
 ${SERVER}         localhost:7272
-${BROWSER}        Chrome
+${BROWSER}        headlesschrome
 ${DELAY}          1
 ${CALL_BACK URL}   http://localhost:3000/
 ${FOURM_PAGE URL}  http://localhost:3000/forum

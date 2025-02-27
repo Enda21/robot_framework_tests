@@ -48,8 +48,8 @@ npm start
 *Run tests*
 ```
 cd Robot_tests   
+``#Run all tests`
 ```
-```
-robot -L debug redCard_blueCard.robot
+robot --loglevel DEBUG .
 ```
 
