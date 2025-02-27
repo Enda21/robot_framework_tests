@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2 (Python 3.11.9 on win32)" generated="2025-02-22T13:49:26.527902" rpa="false" schemaversion="5">
+<suite id="s1" name="redCard blueCard" source="C:\Users\BrodyE\QACommunity\Robot_tests\redCard_blueCard.robot">
+<test id="s1-t1" name="Fourm Test" line="7">
+<msg time="2025-02-22T13:49:27.326642" level="INFO">${DataDriver_TEST_DATA} = {'ERROR': 'Test Case not found...'}</msg>
+<status status="FAIL" start="2025-02-22T13:49:27.324646" elapsed="0.001996">Test cannot be empty.</status>
+</test>
+<doc>This Data driven test for a Fourm</doc>
+<status status="FAIL" start="2025-02-22T13:49:26.553901" elapsed="0.773747"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="redCard blueCard" id="s1" pass="0" fail="1" skip="0">redCard blueCard</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-02-22T13:49:26.605761" level="WARN">Error in file 'C:\Users\BrodyE\QACommunity\Robot_tests\resource.robot' on line 81: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-02-22T13:49:26.606762" level="WARN">Error in file 'C:\Users\BrodyE\QACommunity\Robot_tests\resource.robot' on line 85: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-02-22T13:49:26.606762" level="WARN">Error in file 'C:\Users\BrodyE\QACommunity\Robot_tests\resource.robot' on line 90: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-02-22T13:49:26.606762" level="WARN">Error in file 'C:\Users\BrodyE\QACommunity\Robot_tests\resource.robot' on line 95: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-02-22T13:49:27.317323" level="ERROR">[ DataDriver ] Error in robot file:
+  File "C:\Users\BrodyE\QACommunity\Robot_tests\redCard_blueCard.robot", line 0</msg>
+<msg time="2025-02-22T13:49:27.322320" level="ERROR">In source file:
+  File "C:\Users\BrodyE\QACommunity\Robot_tests\testdata.csv", line 0</msg>
+<msg time="2025-02-22T13:49:27.324646" level="ERROR">Calling method '_start_suite' of listener 'DataDriver' failed: ValueError: Unassigned requiered argument detected: ${First Name}.</msg>
+</errors>
+</robot>

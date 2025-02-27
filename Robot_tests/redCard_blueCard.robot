@@ -7,5 +7,3 @@ Card Display
   A Card should be displayed
   Refresh Page and Verify How many times each Color Card Appears
   [Teardown]    Close Browser
-
-

@@ -1,10 +1,9 @@
 # robot_framework_tests
 
-This is a test to verify that a card show up 70%/30% based on the refresh.
-Using Robot Frame work.
-
-70% red card
-30% blue card
+# Pre-requisites
+Have node installed in your machine
+https://nodejs.org/en/download
+https://github.com/robotframework/HowToWriteGoodTestCases/blob/master/HowToWriteGoodTestCases.rst
 
 # To install webdriver
 pip install webdrivermanager
@@ -17,6 +16,9 @@ https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#py
 
 *Install Robot via Pip*
 ```
+#For Data Driven testing
+pip install robotframework-datadriver
+
 # Install the latest version (does not upgrade)
 pip install robotframework
 
@@ -40,6 +42,8 @@ pip uninstall robotframework
 ```
 
 *Run Web Application*
+cd my-app
+npm start
 
 *Run tests*
 ```

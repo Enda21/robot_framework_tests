@@ -12,10 +12,11 @@ Library           Collections
 ${SERVER}         localhost:7272
 ${BROWSER}        Chrome
 ${DELAY}          1
-${CALL_BACK URL}  https://www.daft.ie/daft-mortgages/buying-budget/call-back
+${CALL_BACK URL}  http://localhost:3000/
+${FOURM_PAGE URL}     http://localhost:3000/fourm
 @{list_to_populate}    #   create empty list to populate with for-loop
-${LowQuotes}=     LowQuotes
-${MortgageLine}=    MortgageLine
+${Red}=     RedCard
+${Blue}=    BlueCard
 
 
 *** Keywords ***
@@ -23,31 +24,38 @@ Open Browser to Card Page
     Open Browser    ${CALL_BACK URL}      ${BROWSER}
     Maximize Browser Window
     A Card should be displayed
-    Click Button  xpath: //*[contains(text(), "Accept All")]
+
+Open Browser to Fourm Page
+    Open Browser    ${FOURM_PAGE URL}      ${BROWSER}
+    Maximize Browser Window
+    A Form should be displayed
 
 A Card should be displayed
-    Title Should Be    Daft Mortgages: Request Callback
+    Title Should Be    Card Page
 
-LowQuotes appeared add to List
-   Append To List   ${list_to_populate}  ${LowQuotes}
+A form should be displayed
+    Title Should Be    Form Page
+
+Red appeared add to List
+   Append To List   ${list_to_populate}  ${Red}
 
 
-MortgageLine appeared add to List
-   Append To List   ${list_to_populate}  ${MortgageLine}
+Blue appeared add to List
+   Append To List   ${list_to_populate}  ${Blue}
 
 
 Refresh Page and Verify How many times each Color Card Appears
     TRY
     # Loop for 100 iterations
-     # Verify if its LowQuotes or MortgageLine
+     # Verify if its Red or Blue
         WHILE    True    limit=100
-         ${status}=    Run keyword and return status
-        ...    Page should contain element    id=input-wrapper-lowQuotes
-        Run keyword if  ${status}   LowQuotes appeared add to List
+         ${status} =    Run keyword and return status
+        ...    Page Should Contain  Red Card
+        Run keyword if  ${status}   Red appeared add to List
 
-        ${status}=    Run keyword and return status
-                ...    Page should contain element   id=input-wrapper-mortgageLine
-                Run keyword if  ${status}   MortgageLine appeared add to List
+        ${status} =    Run keyword and return status
+                ...   Page Should Contain    Blue Card
+                Run keyword if  ${status}   Blue appeared add to List
             LOG TO CONSOLE   ${list_to_populate}
             Reload Page
 
@@ -56,16 +64,50 @@ Refresh Page and Verify How many times each Color Card Appears
         Log    The loop did not finish within the limit.
     END
     # Get the toal amoun each on aperad out of 100 iertaion and turn into percentage
-    ${numberOfMortgageLine}=  Count Values In List   ${list_to_populate}   ${MortgageLine}
-    ${numberOfLowQuotes} =   Count Values In List   ${list_to_populate}   ${LowQuotes}
-        LOG TO CONSOLE  --------Low Quotes appeared ${numberOfLowQuotes} ---------
-        LOG TO CONSOLE  ---------Mortage Line appeared ${numberOfMortgageLine} --------
+    ${numberOfRedCards}=  Count Values In List   ${list_to_populate}   ${Red}
+    ${numberOfBlueCards} =   Count Values In List   ${list_to_populate}   ${Blue}
+        LOG TO CONSOLE  --------Red Crads appeared ${numberOfRedCards} ---------
+        LOG TO CONSOLE  ---------Blue Cards appeared ${numberOfBlueCards} --------
     # Asset that LowQuotes show up more often than MortgageLine
-     Should Not Be Equal As Numbers   ${numberOfMortgageLine}  ${numberOfLowQuotes}
-     Should Be True   ${numberOfLowQuotes} > ${numberOfMortgageLine}
+     Should Not Be Equal As Numbers   ${numberOfRedCards}  ${numberOfBlueCards}
+     Should Be True   ${numberOfBlueCards} > ${numberOfRedCards}
 
 Pause
   Set Selenium Speed    ${DELAY}
+
+Enter First Name
+    [Arguments]    ${FirstName}
+    Input Text    name=firstName    ${FirstName}
+    [Return]    ${FirstName}
+Enter Last Name
+    [Arguments]    ${LastName}
+    Input Text    name=lastName    ${LastName}
+    [Return]    ${LastName}
+
+ Enter Age
+    [Arguments]    ${Age}
+    Input Text    name=age    ${Age}
+    [Return]    ${Age}
+
+Select Hobby
+    [Arguments]    ${Hobby}
+    Select From List By Label    name=hobby    ${Hobby}
+    [Return]    ${Hobby}
+
+Select Submit Button
+    Click Button    name=submit
+
+Verify Suceccful message is displayed
+    Page Should Contain    Successfully Submitted!
+
+Check Console Output
+    [Arguments]    ${EXPECTED_OUTPUT}
+    [Documentation]    Verify that the expected output is present in the browser console logs.
+    ${logs}=    Execute JavaScript    return window.console.log()
+    Should Contain    ${logs}    ${EXPECTED_OUTPUT}
+
+
+
 
 
 
