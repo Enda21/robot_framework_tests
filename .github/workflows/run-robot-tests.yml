@@ -47,8 +47,7 @@ jobs:
       - name: Run Robot Framework Tests
         run: |
           cd Robot_tests
-          robot -d results FourmTests.robot --output output.xml --log log.html --report report.html .
-          robot -L debug redCard_blueCard.robot --output output.xml --log log.html --report report.html .
+          robot -d results
 
       - name: Upload Test Reports
         if: always()
