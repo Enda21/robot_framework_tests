@@ -46,12 +46,13 @@ jobs:
 
       - name: Install Chrome and ChromeDriver
         run: |
-              sudo apt update
-              sudo apt install -y google-chrome-stable
-              CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-              wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
-              unzip chromedriver_linux64.zip -d /usr/local/bin/
-              rm chromedriver_linux64.zip
+                sudo apt update
+                sudo apt install -y google-chrome-stable
+                CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+')
+                CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
+                wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+                unzip chromedriver_linux64.zip -d /usr/local/bin/
+                rm chromedriver_linux64.zip
 
       - name: Run Robot Framework Tests in Headless Mode
         run: |
