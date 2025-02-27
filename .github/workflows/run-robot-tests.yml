@@ -3,11 +3,11 @@ name: Run Robot Framework Tests
 on:
   push:
     branches:
-      - main  # Runs tests on push to main branch
+      - main
   pull_request:
     branches:
-      - main  # Runs tests on PRs to main branch
-  workflow_dispatch:  # Allows manual triggering
+      - main
+  workflow_dispatch:
 
 jobs:
   test:
@@ -44,10 +44,16 @@ jobs:
           pip install robotframework-seleniumlibrary
           pip install robotframework-datadriver[excel] openpyxl
 
-      - name: Run Robot Framework Tests
+      - name: Install Chrome and ChromeDriver
+        run: |
+          sudo apt update
+          sudo apt install -y google-chrome-stable
+          sudo apt install -y chromedriver
+
+      - name: Run Robot Framework Tests in Headless Mode
         run: |
           cd Robot_tests
-          robot -d results --variable BROWSER:headlesschrome .robot -d results --variable BROWSER:headlesschrome .
+          robot -d results --variable BROWSER:headlesschrome .
 
       - name: Upload Test Reports
         if: always()
