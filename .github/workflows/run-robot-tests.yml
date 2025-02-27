@@ -47,7 +47,7 @@ jobs:
       - name: Run Robot Framework Tests
         run: |
           cd Robot_tests
-          robot -d results .
+          robot -d results --variable BROWSER:headlesschrome .robot -d results --variable BROWSER:headlesschrome .
 
       - name: Upload Test Reports
         if: always()
