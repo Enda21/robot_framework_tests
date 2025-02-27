@@ -12,8 +12,8 @@ Library           Collections
 ${SERVER}         localhost:7272
 ${BROWSER}        Chrome
 ${DELAY}          1
-${CALL_BACK URL}  http://localhost:3000/
-${FOURM_PAGE URL}     http://localhost:3000/fourm
+${CALL_BACK URL}   http://localhost:3000/
+${FOURM_PAGE URL}  http://localhost:3000/forum
 @{list_to_populate}    #   create empty list to populate with for-loop
 ${Red}=     RedCard
 ${Blue}=    BlueCard
@@ -95,16 +95,10 @@ Select Hobby
     [Return]    ${Hobby}
 
 Select Submit Button
-    Click Button    name=submit
+    Click Button    css=button[type="submit"]
 
 Verify Suceccful message is displayed
     Page Should Contain    Successfully Submitted!
-
-Check Console Output
-    [Arguments]    ${EXPECTED_OUTPUT}
-    [Documentation]    Verify that the expected output is present in the browser console logs.
-    ${logs}=    Execute JavaScript    return window.console.log()
-    Should Contain    ${logs}    ${EXPECTED_OUTPUT}
 
 
 

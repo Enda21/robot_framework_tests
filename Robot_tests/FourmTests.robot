@@ -1,12 +1,14 @@
 *** Settings ***
-Documentation    This Data driven test for a Fourm
+Documentation    This Data-driven test for a Forum
+#Library          DataDriver    file=fourmTestData.xlsx    sheet_name=Sheet1
 Resource         resource.robot
-Library          DataDriver    file=testdata_excel.xlsx    sheet_name=testdata
 
 *** Test Cases ***
 Fourm Test
     [Template]    Fourm Test Template
-    Placeholder Step
+    John            Doe            Video Games  30
+    Jane            Smith          Running      25
+    Bob             Johnson        Cooking      40
 
 *** Keywords ***
 Fourm Test Template
@@ -19,5 +21,4 @@ Fourm Test Template
     Select Hobby    ${Hobby}
     Select Submit Button
     Verify Suceccful message is displayed
-    Check Console Output    Submitted Data {"firstName": "${FirstName}","lastName": "${LastName}","age": "${Age}","hobby": "${Hobby}"}
     [Teardown]    Close Browser

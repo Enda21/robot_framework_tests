@@ -1,0 +1,57 @@
+name: Run Robot Framework Tests
+
+on:
+  push:
+    branches:
+      - main  # Runs tests on push to main branch
+  pull_request:
+    branches:
+      - main  # Runs tests on PRs to main branch
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use Ubuntu for CI/CD
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd my-app
+          npm install
+
+      - name: Start Application in Background
+        run: |
+          cd my-app
+          npm start &
+          sleep 10  # Give some time for the app to start
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install Robot Framework Dependencies
+        run: |
+          pip install robotframework
+          pip install robotframework-seleniumlibrary
+          pip install robotframework-datadriver[excel] openpyxl
+
+      - name: Run Robot Framework Tests
+        run: |
+          cd Robot_tests
+          robot -d results --output output.xml --log log.html --report report.html .
+
+      - name: Upload Test Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: robot-test-results
+          path: Robot_tests/results/
