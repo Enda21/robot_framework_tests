@@ -1,4 +1,16 @@
 # robot_framework_tests
+This Project is Both the Application to be tested and the Robot Framework tests
+# The application 
+Simple  2 page application that has a Test card page and form page
+Test Card page shows red card and Blue Card when the page is refreshed 
+The Form page is a simple form that takes in a name and age and select a hobby from a Drop-down list.
+
+# The tests
+redCard_blueCard.robot - Tests the Test Card page and record how many times each card appears and assert that BlueCard should appear more than Red 
+FourmTests.robot - Tests the Form page and asserts that the form is submitted successfully
+
+# Running the tests in a Pipline
+See Github Actions and the .github/workflows/run-robot-tests.yml file
 
 # Pre-requisites
 Have node installed in your machine
@@ -41,14 +53,16 @@ pip install https://github.com/robotframework/robotframework/archive/master.zip
 pip uninstall robotframework
 ```
 
-*Run Web Application*
+#Run Web Application
 cd my-app
-npm start
 
-*Run tests*
+npm start
+```
+#Run tests
 ```
 cd Robot_tests   
-``#Run all tests`
+
+#Run all tests
 ```
 robot --loglevel DEBUG .
 ```

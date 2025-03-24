@@ -10,7 +10,7 @@ Library           Collections
 
 *** Variables ***
 ${SERVER}         localhost:7272
-${BROWSER}        headlesschrome
+${BROWSER}        chrome
 ${DELAY}          1
 ${CALL_BACK URL}   http://localhost:3000/
 ${FOURM_PAGE URL}  http://localhost:3000/forum
@@ -63,7 +63,7 @@ Refresh Page and Verify How many times each Color Card Appears
     EXCEPT    WHILE loop was aborted    type=start
         Log    The loop did not finish within the limit.
     END
-    # Get the toal amoun each on aperad out of 100 iertaion and turn into percentage
+    # Get the toal amount each Card appeard out of 100 itertion and turn into percentage
     ${numberOfRedCards}=  Count Values In List   ${list_to_populate}   ${Red}
     ${numberOfBlueCards} =   Count Values In List   ${list_to_populate}   ${Blue}
         LOG TO CONSOLE  --------Red Crads appeared ${numberOfRedCards} ---------
